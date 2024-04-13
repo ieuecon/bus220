@@ -1,0 +1,1271 @@
+---
+title: "Overview"
+editor_options: 
+  chunk_output_type: console
+---
+
+# Vectors
+
+Create vectors by combining elements using the `c()` function.
+
+> think of `c()` function for combine; you are combining things together.
+
+::: {.callout-note appearance="simple"}
+# `c()`
+
+```{r}
+#| eval: false
+c(element1, element2, element3, ...)
+```
+
+**Combines** given elements to a vector.
+:::
+
+::: {.callout-warning appearance="simple"}
+Remember, by definition, all elements in a vector must have the same type(`integer`, `double`, `character`, `logical` etc.).
+:::
+
+Lets create a 5 element vector of week-days and assign this vector to variable `days`.
+
+```{r}
+days <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+days 
+```
+
+Essentially you have just created a typical Excel column of a table. *When you think about it a table is just a combination of vectors!*
+
+| days      | ... | ... |
+|-----------|-----|-----|
+| Monday    | ... | ... |
+| Tuesday   | ... | ... |
+| Wednesday | ... | ... |
+| Thursday  | ... | ... |
+| Friday    | ... | ... |
+
+Notice all the elements(names of the days) are the same type(character). In this case `days` is a *character* vector.
+
+Lets add two other columns to this table and create them in R; the calories burned by you (`me`) and the calories burned by your friend(`my friend`) for each day.
+
+| days      | my calories | my friend calories |
+|-----------|-------------|--------------------|
+| Monday    | 100         | 200                |
+| Tuesday   | 120         | 130                |
+| Wednesday | 200         | 100                |
+| Thursday  | 150         | 170                |
+| Friday    | 140         | 150                |
+
+: Burn the Calories competition results
+
+This table shows the calories burned for you and your friend for different days.
+
+Now, we need to create the other two columns (`my calories`, and `my friend calories`) in R. Just like `days` we can create vectors for each column. This time the elements are numeric, so we are going to be creating a `numeric vector`
+
+::: callout-caution
+# Exercise
+
+Create a vector for the calories burned by you (represented in the `my calories` column) and assign it to variable named `my_calories`
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+my_calories = c(100, 120, 200, 150, 140)
+my_calories 
+```
+
+Create a vector for the calories burned by your friend(in `my friend calories` column). Assing it to variable `my_friends_calories`
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+my_friends_calories <- c(200,130,100,170,150)
+my_friends_calories 
+```
+:::
+
+Now we can see the days,
+
+```{r}
+days
+```
+
+the calories you burned,
+
+```{r}
+my_calories
+```
+
+and the calories your friend burned
+
+```{r}
+my_friends_calories
+```
+
+Suppose your friend came up to you and asked how many calories you burned on Thursday. Remember you only have the variables `days`, `my_calories` and `my_friends_calories`. What would be your answer?
+
+To answer this question you would use the varaible `my_calories` that contains the calories you burned each day:
+
+```{r}
+my_calories
+```
+
+But this variable only contains the calories burned by you as values, it doesn't have the **names** of the week you burned the calories. However, you know that the first value(100) is the calories burned by you in monday, so you can count the days until thursday to find the correct answer: 150.
+
+This is kind of a hard work. It is hard to tell how many calories you burned on which day and it would have been nice to see the days of the names when we are looking at the vector `my_calories`.
+
+```{r}
+#| echo: false
+names(my_calories) <- days
+```
+
+A result like this would be great:
+
+```{r}
+my_calories
+```
+
+```{r}
+#| echo: false
+names(my_calories) <- NULL
+```
+
+In fact, this is very simple to do with R: you can use the function `names()` to assign a name to each element of a vector.
+
+::: {.callout-note appearance="simple"}
+# `names()`
+
+This function allows you to check, change, and delete the names of a varaible.
+
+To check the names of a vector use:
+
+```{r}
+#| eval: false
+names(aVectorName)
+```
+
+To change the names of a vector, use:
+
+```{r}
+#| eval: false
+names(aVectorName) <- anotherVectorThatIncludesNames
+```
+
+To remove the names of a vector, use:
+
+```{r}
+#| eval: false
+names(aVectorName) <- NULL
+```
+:::
+
+Currently we dont have any names for any value of our vector `my_calories`. Lets confirm this:
+
+```{r}
+names(my_calories)
+```
+
+We have the result `NULL`, which indicates no element in our vector has a name.
+
+What we want is to name each element by their corresponding days. So the first element of `my_calories` (*100*) should be named *Monday*, the second (*120*) should be named *Thursday* etc. To do that we can assign a new vector which contains the names of each element to `names(my_calories)`:
+
+```{r}
+names(my_calories) <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+```
+
+::: {.callout-tip appearance="simple" collapse="true"}
+# Tip: You can use a varaible to name a vector
+
+There was an easier way to do this naming operation. Instead of creating a new vector of names we could have used the varaible `days` which has the same values!
+
+So the following code:
+
+```{r}
+names(my_calories) <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+```
+
+is exactly same as this code
+
+```{r}
+names(my_calories) <- days
+```
+
+This is because `days`
+
+```{r}
+days
+```
+
+is the same as this:
+
+```{r}
+c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+```
+:::
+
+Now lets see how does our variable look like:
+
+```{r}
+my_calories
+```
+
+::: {.callout-tip appearance="simple" collapse="true"}
+# Tip: To remove the names of a vector assing NULL to its names
+
+If we want to remove the names of our vector `my_calories` we can assign the names of the vector to what it was: `NULL`
+
+```{r}
+names(my_calories) <- NULL
+```
+
+lets check:
+
+```{r}
+my_calories
+```
+
+```{r}
+#| echo: false
+names(my_calories) <- days
+```
+:::
+
+Now we have one variable `days` which contains the names of the days, `my_calories` which contains the calories you burned, and it is a named vector, and `my_friends_calories` which contains the calories burned by your friend and it is not named.
+
+::: callout-caution
+# Exercise
+
+Tables have turned, it is your time to ask your friend a question. You ask him how many calories he burned on Wednesday.
+
+Well he told you the true answer: 100. However, your friend didn't take a BUS220 course before and he first check his variable:
+
+```{r}
+my_friends_calories
+```
+
+Then counted to the 3rd value.
+
+But you know better. Show him how to do this professionally:
+
+1.  Name his burned calories to their corresponding days:
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+names(my_friends_calories) <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+```
+
+or following code is another way to do it:
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+# if you did this way, you are a cool person (⌐■_■)
+names(my_friends_calories) <- days
+```
+
+2.  Show him how his variable look like now:
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+my_friends_calories
+```
+
+3.  Annoy your friend; remove the names of the his variable, let him suffer in his ignorance.
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+names(my_friends_calories) <- NULL
+```
+:::
+
+Your annoying friend has another question for you now: How many calories did you burn in your first three days?
+
+To answer that you need to use `my_calories` vector:
+
+```{r}
+my_calories
+```
+
+From here you can simply give the answer to your friend. However, you don't want to share the calories you burned on other days(Thursday and Friday). So, you don't need the whole vector, you only need a 'subset' of your vector(a part of your vector, a portion of your vector) which shows only the first three days.
+
+To do that you can use what is called **indexing**. Indexing is reaching certain elements of a variable, in this case a vector.
+
+::: {.callout-note appearance="simple"}
+# Indexing Syntax
+
+Use `vectorName[n]` to reach the *n*th value of the number.
+
+`vectorName[1]`: returns the first element of the vector. `vectorName[2]`: returns the first element of the vector.
+
+Use `vectorName[-n]` to get elements except the *n*th. `vectorName[-1]` returns all elements except the first `vectorName[-6]` returns all elements except the 6th element.
+
+We can also use a vector of positions to reach only to those positions. This is called slicing. `vectorName[n1:n2]` will give you all the items between the **positions** *n1* and *n2*.
+
+`vectorName[1:2]`: returns 1st and 2nd elements(same as above) `vectorName[c(1, 2)]`: returns 1st and 2nd elements. `vectorName[c(1, 3, 6)]` returns 1st, 3rd and 6th elements. `vectorName[1:50]` returns all elements between 1st and 50th positions.
+
+You can also use logical vectors for slicing as well. This becomes more like filtering actually: `vectorName[condition]` gives you the vector elements that satisfy the condition given `vectorName[vectorName > 4]` returns all the elements that are bigger than 4 `vectorName[vectorName <= 4]` returns all the elements that are less or equal to 4
+:::
+
+To reach to a certain elements of a vector, you first need to determine the positions of the elements. For your case you need to reach the first 3 elements of the vector `my_calories`. So your the position of the elements you want to reach is 1st, 2nd, and third.
+
+After this you can use `[]` to index your varaible. Putting your positions inside the squared braces before your variable name will result with what you want
+
+```{r}
+my_calories[c(1, 2, 3)]
+```
+
+::: {.callout-tip appearance="simple" collapse="true"}
+# Tip: alternative way to do this
+
+There is a cooler way (⌐■\_■) to do this. Can you guess how?
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+my_calories[1:3]
+```
+
+This works because what you put inside the `[]` are the same!
+
+Check this:
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+1:3
+```
+
+and this:
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+c(1, 2, 3)
+```
+
+they are the same, so you end up with the same result!
+:::
+
+Lets get the calories you burned on thursday:
+
+```{r}
+my_calories[4] 
+# Thursday is the 4th day, so we write 4 to reach 
+# to the 4th value
+```
+
+If the elements of your variable have names (just like your `my_calories`) you can also use name of the element instead of the position to reach certain elements. Everything else is the same; you just write the name of the element instead of the position.
+
+Why don't you give a try this time: reach the calories burned by you for friday
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+my_calories["Friday"]
+```
+
+You can also combine names just like positions: 1. Reach the calories burned by you on tuesday and thursday using positions of the elements
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+my_calories[c(2, 4)]
+```
+
+2.  Do the same but use the names instead of the positions
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+my_calories[c("Tuesday", "Thursday")]
+```
+
+Now your annoyed friend comes back and asks you another question:
+
+> On which days did you burn more than 120 calories?
+
+Lets see your variable again:
+
+```{r}
+my_calories
+```
+
+We can tell by looking at this. We burned more than 120 calories on wednesday, thursday, and friday.
+
+But R doesn't have eyes, or brains, so we need to guide R to see and think just like we do. Lets consider how we found our answer:
+
+1.  We understood that we have a condition. Our element must be more than 120 (\>120).
+2.  Starting from 100 (Monday) we evaluated if each value about whether they satisfy the condition (if it is higher than 120) or not (if it is not higher than 120).
+3.  For the values that satisfied our condition(wednesday, thursday, friday) we took a note in our head, for the elements that doesn't we ignored them and gave the answer.
+
+turns out R also works like this. We give a condition to R ( \> 120) (or \> 0 etc) and R goes to each element, checks whether the element is fit for the condition and returns only the elements that satisfy our condition.
+
+So lets do this in R way. We are trying to reach the eleemnts that are higher than 120. This is our condition; so we need our varaible `my_calories` to be more than 120. Lets write this and see what happens
+
+```{r}
+my_calories > 120
+```
+
+R did what we did! It went to each value in the vector and evaluated the condition( \> 120). Here how this worked: 1. R goes to first value: 100, asks the question "Does this value satisfy the condition?". The answer is no. So it **took a note**: FALSE(computer language for no). 2. Next, R went to the second value; 120. Asked itself "Does this value satisfy the condition?". FALSE. It also noted this down. 3. R went to the 3rd value; 200. Asked the same question. This time the answer is yes, 200 is higher than 120. So it took a note TRUE (yes for computer language). 4. same as above 5. same as above.
+
+R goes to each valeu in the vector, evaluates whether they satisfy the condition or not and then **returns** a vector showing us the results.
+
+Now these results are not really what we wanted. We only see the days you burned more than 120 calories but we dont see the actaul calories themselves. To see them we do inexing just like we did with the positions;
+
+```{r}
+my_calories[my_calories > 120]
+```
+
+Now we got what we wanted.
+
+::: callout-caution
+# Exercise
+
+Tables turned: now you ask your friend the questions. Ask him:
+
+> How much calories you burned on Tuesday(2nd day) and Friday(5th day)
+
+again, he solves it amateurly; counts the days and so forth.
+
+```{r}
+my_friends_calories
+```
+
+You now better, show him how it is done. (Notice we don't have names in this variable. So we cannot use names to index)
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+my_friends_calories[c(2, 5)]
+```
+
+> How much calories you burned on last 3 days?
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+my_friends_calories[3:5]
+```
+
+> On the days you burned more than 130 calories, how many calories you burned?
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+my_friends_calories[my_friends_calories > 130]
+```
+
+> Did you less than 130 calories a day? If so how many did you burn?
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+my_friends_calories[my_friends_calories < 130]
+```
+
+> Have you ever burned exactly 150 calories?
+
+Tip: use `==` (two equal signs) Tip: This is not an indexing question. A yes(TRUE) or no (FALSE) question.
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+my_friends_calories == 150
+```
+:::
+
+Finally, lets end this section by combining the calories burned by you and your friend. Our old friend `c()` function combines elements right? So, can it combine two vectors?
+
+Lets try one example first; `1:4` is a vector right? Just like `c(5, 40, 400)`. The question is can we combine these two vectors?
+
+```{r}
+c(1:4, c(5, 40, 400))
+```
+
+Yes! `c()` function can combine vectors together to one (this is called flattening among computer nerds).
+
+So how about if you try to combine the calories you and your friend burned into one vector and assing it to a variable named `all_calories`:
+
+```{r}
+#| code-fold: false
+#| code-summary: "Show the code"
+all_calories <- c(my_calories, my_friends_calories)
+all_calories
+```
+
+Notice the names for your calories stayed and since your friends vector was not named we don't see any name for their values. Well this looks ugly, remove the names of all elements:
+
+```{r}
+#| code-fold: false
+#| code-summary: "Show the code"
+names(all_calories) <- NULL
+all_calories
+```
+
+Nice.
+
+# Matrices
+
+A matrix is a combination of vectors of the same type. Think about this, this is important. This means that a character and numeric vector cannot be combined to create a matrix.
+
+We use the function `matrix()` to create a matrix. This functions takes the following arguments
+
+```{r}
+#| eval: false
+matrix(
+  data, ncol, nrow, byrow = FALSE, dimnames
+)
+```
+
+-   data: a vector
+-   ncol: number of columns the matrix will have
+-   nrow: number of rows the matrix will have
+-   byrow: do you want to fill the matrix by rows? By default this is false; which means R takes the values of the vector given, fills one column vertically, then moves to next. This will make sense soon
+-   dimnames: names of the columns and rows.
+
+Consider the following vector:
+
+```{r}
+1:40
+```
+
+We have 40 elements in this vector. This is also called the length of the vector; it is the number of element it contains:
+
+```{r}
+length(1:40)
+```
+
+Lets create a matrix from this vector. Since we have 40 values, we can create lost of matrices with different dimensions. One matrix could be a 5x8 matrix(5 rows, 8 columns), another could be 4x10 matrix etc. Notice multiplication of the dimensions give the length of the vector. Any other combination of dimensions would throw error; either because we have more values than we can fit in or less values than the dimensions
+
+let create a 8x10 matrix from this vector. Using the `matrix` function:
+
+```{r}
+matrix(data = 1:40, nrow = 8, ncol = 10)
+```
+
+We don't need to write the argument names specifically. So this also works:
+
+```{r}
+matrix(1:40, 8, 10)
+```
+
+However, it is best to write the argument names. Trust me.
+
+If we want to crate a matrix with different dimensions, say 10x4:
+
+```{r}
+matrix(1:40, nrow =10, ncol= 4)
+```
+
+Notice that our vector is used to fill the rows and column. Have a look at the order of the values, the vector seem to be filled starting from the first column followed by others. This is called a column wise operation. R fills the rows by columns. In this case, we told R that we want a matrix with 4 columns and 10 rows. So it created an empty matrix with this dimensions. Then it started using the `1:40` vector to fill the empty values **by column**. So it took the first value of our vector, 1, and put it onto the first columns first row. Than it took the second value of our vector, 2, and put it to the first column second row... It put 10 to 10th row of the first column, and then moved to the second column. This is a column wise operation, and by default R operates in this way.
+
+If we dont want this, instead, we want to fill our values by row, we use the argunment `byrow` in `matrix()` function and set it to `TRUE`.
+
+```{r}
+matrix(data= 1:40, nrow = 10, ncol = 4, byrow = TRUE)
+```
+
+Notice the matrix is now filled by row.
+
+Lets try something new. Check out this matrix, can you guess the code to generate this?
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+matrix(data =21:50, nrow = 6, ncol =5)
+```
+
+How about this:
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+matrix(data =21:50, nrow = 6, ncol =5, byrow = T)
+```
+
+::: {.callout-tip appearance="simple"}
+notice we used `byrow = T` instead of `byrow = TRUE`.
+
+`T` is short for `TRUE`. So you can always use `T` if you are feeling lazy(from now on I assume you are).
+
+You want proof?
+
+```{r}
+T == TRUE
+```
+
+So it is truly `TRUE` that `T` is sames as `TRUE`.
+:::
+
+Do you see the values like *\[,1\], \[3,\]...* on top and left side of our matrix?
+
+Those are names of our matrix. Just like vectors, matrices can have names. In this case the values on the left *\[1,\], ..., \[6,\]* are called row names, and the values on the top *\[,1\], ...\[,5\]* are called column names. We can change those but they are actually very helpful.
+
+Assume we want to reach to first column of this matrix. That is the values 21, 22, 23 ...26. How do we do that? Do you remember indexing in vectors? The idea was to reach a part of the variable and we used `[n]` kind of notations.
+
+Inexing, reaching certain elements, in the matrices are similar. Since we have two dimensions here (row and column) the notation is a bit different. Here are the base syntax:
+
+::: {.callout-note appearance="simple"}
+Reach to one row: matrix\[n,\] Reach to one column: matrix\[,n\] Reach to multiple rows: matrix\[n1:n2,\] Reach to multiple columns : matrix\[,n1:n2\] Reach to specific item matrix\[ncol,nrow\] Reach a section of the matrix: matrix\[nr1:nr2,nc1:nc2\]
+:::
+
+Before indexing this matrix, lets assign it to a varaible:
+
+```{r}
+neo <- matrix(21:50, nrow = 6)
+neo
+```
+
+Did you notice that `ncol` is missing? But we got the result? This is because R is smart enough (just like you) to know that from a vector with 30 values (50 - 21 + 1 = 30; gives the number of total values) and with 6 rows, we can only have a matrix with...yeah, 5 columns. So it is actually not necessary to write to write `nrow` and `ncol` together. You can leave any one of them out. However, it is a good practice to write them both, just to make sure. (It is not that we don't trust R, it is because we don't trust...you).
+
+lets reach to the 3rd column of the `neo` matrix;
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+neo[,3]
+```
+
+Notice what is returned is a vector, which is the building block of a matrix.
+
+Reach to first two columns:
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+neo[,1:2]
+```
+
+Reach to 1st, 4th, and 6th rows:
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+neo[c(1, 4, 6), ]
+```
+
+Now we have another small matrix to play.
+
+Reach to 6th, 2nd, and 3rd rows **in that order**:
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+neo[c(6, 2, 3),]
+```
+
+Did you notice the names on the top are really helpful?
+
+Lets get the value at the 3rd row and 5th column:
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+neo[3, 5]
+```
+
+Lets get the first 2 rows and last 2 columns:
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+neo[1:2, 4:5]
+```
+
+We can change the names of the matrices as well. Since we have rows and columns, we have different functions to change each:
+
+-   `colnames(matrixName)`
+-   `rownames(matrixName)`
+
+these work just as `names(vectorName)`. For example you can check the existing column names by
+
+```{r}
+colnames(neo)
+```
+
+You can assing new column names by:
+
+```{r}
+colnames(neo) <- c("first", "second", "third",
+                   "forth", "fifth")
+# since we have 5 columns we assing a five element vector as new column names
+```
+
+now check the colnames:
+
+```{r}
+colnames(neo)
+```
+
+How about our little matrix:
+
+```{r}
+neo
+```
+
+Since we have column names now, we can use them to index:
+
+```{r}
+neo[, "second"]
+```
+
+```{r}
+neo[c(1,5), "fifth"]
+```
+
+```{r}
+neo[1:4, c("second", "forth")]
+```
+
+We can do this for the row names.
+
+Use the following vector:
+
+```{r}
+some_names <- paste0("r", 1:6) # a cool way to create vectors
+some_names
+```
+
+and name the rows of `neo`
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+rownames(neo) <- some_names
+```
+
+now check the row names of the neo:
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+rownames(neo) 
+```
+
+Show me the `neo`
+
+```{r}
+#| code-fold: true
+#| code-summary:  "Show the code"
+neo 
+```
+
+Get the rows r1 to r3 and columns third to forth
+
+```{r}
+#| code-fold: true
+#| code-summary:  "Show the code"
+neo[c("r1", "r2", "r3"), c("third", "forth")]
+```
+
+::: {.callout-caution} \# Exercise
+
+Remember our calorie vectors? Especiall `all_calories`?
+
+```{r}
+all_calories
+```
+
+Now create a 2x5 matrix from this matrix and assign it to `calories_matrix`:
+
+```{r}
+#| code-fold: true
+#| code-summary:  "Show the code"
+calories_matrix <- matrix(all_calories, nrow =2)
+calories_matrix
+# did you use ncol=5 argument as well? Dont worry, you are not wrong,
+# you are just boring.
+# (•_•)
+# ( •_•)>⌐■-■
+# (⌐■_■)
+```
+
+# Categorical Data: a.k.a Factors in R
+
+Categorical variables represent groups of data that fall into a limited number of categories. Ethnicity, education, race: a data that can fall into a few distinct groups. For example education as a categorical variable could take the levels: none, primary, secondary, short-cylce teriary, bachlor, master, doctoral, nothing more. Factors can be ordinal(hotness of a chili sauce(1, 2, 3, ...10)) or nominal(types of sports, cat breeds, sex). Education is an ordinal data that can be ordered.
+
+Interested? Learn more on this great resource: [click to go to this great resource](https://letmegooglethat.com/?q=what+is+a+categorical+variable%2Fvector%3F)
+
+To create a factor varaible first create a standard vector(character, or numeric depending on your variable) which contains the elements. Lets do `sex` as example: it can possibly take two values (*male*, *female*). So `sex` should be a factor vector.
+
+First lets create a normal vector of our varaible which contains data of `sex` of a friend group:
+
+```{r}
+sex_vector <- c("Male","Female", "Female","Male","Male")
+```
+
+```{r}
+sex_vector
+```
+
+In our data we can see there are two levels of sex: male and female.
+
+Now we change the structure of our variable to factor using the `factor` function which has the following syntax:
+
+```{r}
+#| eval: false
+factor(data, levels, labels, ordered)
+# this is same as the function as.factor(...)
+```
+
+-   `data` is the original vector that will be converted to factor. (in our case it is `sex_vector`).
+-   `levels` is the possible values that the original this factor can take. (in our case *Male*, and *Female*)
+-   `labels` is a way to show these possible values in different way. For example instead of *Male* we might want to see *m* for all males, and *f* for females.
+-   `ordered` this is a logical value and can be either `TRUE` or `FALSE`. By default it is set to `FALSE`. Set this to true if your factor have a natural ordering( one level is higher than other) within levels. (in our case Male and Female values are not higher than each other. There is no ordering within our levels. So we set order to `FALSE`(we can leave it just the way it is since it is `FALSE` by default.). If we had education factor, than we would set this to `TRUE` since for example `primary` education is lower than `bachler` level education.). Note: if you set oredered to `TRUE` the levels will be ordered from the order they already have. Below there will be example.
+
+Now lets convert our `sex_vector` to a factor:
+
+```{r}
+sex_factor <- factor(sex_vector, levels = c("Male","Female"))
+sex_factor
+```
+
+Now this looks different from usual vectors.
+
+Now if I wanted to use 'm' for Male and 'f' for 'Female' values.
+
+```{r}
+another_sex_factor <- factor(sex_vector, levels = c("Male", "Female"), labels = c("m", "f"))
+another_sex_factor
+```
+
+this is what i wanted.
+
+::: {.callout-caution} \# Exercise
+
+Imagine you measured the temperatures of your room for 5 days and noted the temperatures as high, medium, and low. Here are your notes:
+
+> High, Low, High, Low, Medium
+
+Generate a factor variable(not ordered)( I know it is ordered but do this first) named `temp` from these values.
+
+1.  Create a standard vector named `temp_vec` which takes the values
+
+```{r}
+#| code-fold: true
+
+#| code-summary: "Show the code"
+temp_vec <- c("High", "Low", "High", "Low", "Medium")
+temp_vec
+```
+
+2.  Convert `temp_vec` to a factor named `temp`
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+temp <- factor(temp_vec, levels = c("High", "Low", "Medium"))
+temp
+```
+
+Okay. This is nice. But when you think about it this is not so nice after all; `temp` should be a factor variable since its levels have a natural order; *High \> Medium \> Low*.
+
+So, lets do this again but this time we create an ordered factor using the argument `ordered = TRUE`
+
+2.  Convert `temp_vec` to a factor named `temp_ord` which is ordered.
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+temp_ord <- factor(temp_vec, levels = c("High", "Low", "Medium"), ordered = TRUE)
+temp_ord
+```
+
+Well this doesn't make sense because High and Medium looks higher than high (does this make sense?). Why did that happen?
+
+The reason is here where we define the `levels`
+
+```{r}
+#| eval: false
+...levels = c("High", "Low", "Medium")...
+```
+
+Notice the levels we given to R is exaclty the ordering of the levels. So.. I think you know how to fix this and be careful to give the levels in order (from smallest to highest) the next time you create an ordered factor:
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+temp_ord <- factor(temp_vec, levels = c("Low", "Medium", "High"), ordered = TRUE)
+temp_ord
+```
+
+This is more like it!
+
+Remember you can always check out the levels of an existing factor using the `levels()` function:
+
+```{r}
+levels(temp_ord)
+```
+
+using the `summary()` function you can check out how many of each level you have in your vector:
+
+```{r}
+summary(temp_ord)
+```
+
+You can index them, filter them etc.
+
+# Data Frames
+
+Vectors and matrces can store only 1 type of data. If we try to merge different types together, R's coercion rules [r coersion rules](https://is.gd/iGp1r8) will take place and we will have only one type of data in matrices and vectors.Lists allow us to use different kinds of data together but they are not efficient to work with. A data frame allows us to work with different kind of data merged together. They combine vectors of the same length into the columns of table. One column still can only have one types of data, but you can have different types of data for each column. So any row can have mixed data types.
+
+Data Frames look like matrix, quack like a duck but they are neither a matrix nor a duck.
+
+TLDR: data frames are basically excel sheets, but in R.
+
+## Creating a Data Frame
+
+To create a data frame you need 3 things;
+
+-   Vectors of equal length to bind into the columns (just like in matrices, we ned them column to be filled big time.)
+-   the holy `data.frame(column1, column2, ...)` function. (as you can see you just put the vectors side by side as columns).
+-   a will to continue this to this part.(you sure you have this? Yeah, I didn't think so.)
+
+Lets prepare the first thing, bunch of vectors to combine (think of this as excel table. We need to create the columns first to have the table right? (thumbs up if you hate excel))
+
+Okay the task is yours; we are going to create the following table(data frame). But first we need to create the columns sepearetly as vectors( we did this at chapter Vectors):
+
+| title   | year | length | view |
+|---------|------|--------|------|
+| Movie_a | 1997 | 121    | 787  |
+| Movie_b | 1980 | 124    | 534  |
+| Movie_c | 1983 | 133    | 572  |
+| Movie_d | 1999 | 133    | 1027 |
+| Movie_e | 2002 | 142    | 657  |
+| Movie_f | 2005 | 140    | 849  |
+| Movie_g | 2015 | 135    | 2059 |
+
+First create the `title` vector. I'll help with this, don't worry about the code, it produces what we want. If you be a good person you ll write these code by yourself one day in addition to being able to see the smurfs.
+
+```{r}
+title <- paste("Movie", 1:7, sep = "_")
+title
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+year <- c(1997,1980,1983,1999,2002,2005,2015)
+year
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+length <-c(121,124,133,133,142,140,135)
+length
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+view <- c(787,534,572,1027,657,849,2059)
+view
+```
+
+Now we have each column to combine to a data frame; it is time to use `data.frame()` function which takes argument of columns. Create a data frame named `movies` shown on the table above
+
+```{r}
+movies <- data.frame(title, year, length, view)
+movies
+```
+
+Notice the row numbers are generated automatically, they don't hurt.
+
+Why dont we use a matrix instead? Try creating this as a matrix instead. Yeah, thats right: a matrix takes only one vector as input and this means you need to combine all values here to a vector. But that wont work because we have different types of values here(some numeric some character) (it actually works but in a bad way. You dont even want to know about it. So be happy with your ignorance and continue...(for the sceptists out there you can try to merge all these columns using c function. (*c(title, year,...)* then use it in the matrix function. But are you ready to try this? are you ready for the blue pill?))).
+
+Data frames are fun, they are easy and you will work with them 99% of the time if you go forward with R.
+
+Lets see a few tricks:
+
+Subsetting(or indexing) is the same as matrices. So for example Get the title column:
+
+```{r}
+movies[, "title"]
+```
+
+```{r}
+# or
+movies[, 1]
+```
+
+Well there is an easier way to reach to a column with data frames. Use this syntax: `dataframe$column`.
+
+For example the same thing can be done via:
+
+```{r}
+movies$title
+```
+
+looks weird, doesn't seem like easier? Well it is, get used to it.
+
+::: callout-caution
+# Exercise
+
+What is the length of Movie_3?
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+movies[3, "length"] # 3rd value of the length column
+# or
+movies$length[3] # 3rd value of the length column
+```
+
+Get the `year` column
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+movies$year
+```
+
+Get the first 3 rows and last 2 columns of the data frame
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+movies[1:3, 2:4]
+```
+
+so, same as matrices.
+:::
+
+Note that there is no difference between `dataframe$column` and `dataframe[,"column"]`.
+
+```{r}
+movies[,"year"]
+```
+
+```{r}
+movies$year
+```
+
+but you can return the column as data frame just by adding `drop = FALSE` after your selection. Really handy stuff I tell you.
+
+```{r}
+movies[,"year", drop = F]
+```
+
+## Names of Data Frames
+
+Data frames have row and column names. use the functions you used to get the row and column names:
+
+```{r}
+rownames(movies)
+```
+
+```{r}
+colnames(movies)
+```
+
+99% of the time you will work with `colnames` and they are very important to master. You can assign new names by assigning a new vector to the column names
+
+```{r}
+colnames(movies) <- c("name", "prod.Year", "duration", "seen")
+movies
+```
+
+We can do filtering for the data frames. For example say you want to select movies after 2000. How to do that? Well there is two ways to do this; easy way, hard way. Ofcourse we start with the unnecessary but gives you good inshight about the way R works, a.k.a hard way; using our beloved `[]`
+
+Lets think about this; we want to see the movies fow which the production year is at least 2000.
+
+First do it with your eyes. Look at this data frame and picture the result
+
+```{r}
+movies
+```
+
+If you weren't able to here is the correct results
+
+```{r}
+#| echo: false
+movies[movies$prod.Year >= 2000,]
+```
+
+So how do we go from that to this?
+
+Lets once again see how do we do it in our brain?
+
+First we know we have a condition: `prod.Year` column should be at least 2000. Lets firt reach to this colum using `$`
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+movies$prod.Year
+```
+
+now lets write our condiiton; prod Year \>= 2000
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+movies$prod.Year > 2000
+```
+
+R went to each value in `prod.Year` and checked the condition. If the value satisfied the condition it noted as `TRUE` and if it the value did not satisfy the condition it noted as `FALSE`. We see that the first 4 values are lower than 2000 so they are marked as `FALSE` and others as `TRUE`.
+
+Now we don't want false and true values, we want a data frame with the condions applied. To do that we need to take this condition and *apply it to the rows* of the data frame. As you know the rows are in the first part of the `[rows, columns]`. So we need to put this condition to first part of the squared braces to filter these rows with `FALSE` value. Lets see:
+
+```{r}
+movies[movies$prod.Year >= 2000, ]
+```
+
+we make sure to put a comma for the columns and since we want all the columns we leave that part blank. However we could for example take only the name and duration of these movies:
+
+```{r}
+movies[movies$prod.Year >= 2000, c("name", "duration")]
+```
+
+::: callout-caution
+# Exercise
+
+Do you remember our table of calories burned? create the data frame of it. The name of the data frame should be `my_data_frame`.
+
+Please don't crete the columns again. You already have them: `days`, `my_calories`...
+
+| days      | my calories | my friend calories |
+|-----------|-------------|--------------------|
+| Monday    | 100         | 200                |
+| Tuesday   | 120         | 130                |
+| Wednesday | 200         | 100                |
+| Thursday  | 150         | 170                |
+| Friday    | 140         | 150                |
+
+create the data frame
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+my_data_frame <- data.frame(days, my_calories, my_friends_calories)
+my_data_frame
+```
+
+Check the rownames
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+rownames(my_data_frame)
+```
+
+remove the rownames
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+rownames(my_data_frame) <- NULL
+```
+
+check the data frame again:
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+my_data_frame
+```
+
+check the column names
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+colnames(my_data_frame) 
+```
+
+leave them be.
+
+filter the data frame for the days you burned less calories than 140:
+
+-   what is your condition?
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+my_data_frame$my_calories < 140
+```
+
+-   apply it to the rows of the data frame
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+my_data_frame[my_data_frame$my_calories < 140,]
+```
+
+okay kind of a hard one, filter the data frames for the values when you burned more calories than your friend
+
+-   what is your condition?
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+my_data_frame$my_calories > my_data_frame$my_friends_calories
+```
+
+-   apply it to the rows of the data frame
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+my_data_frame[my_data_frame$my_calories > my_data_frame$my_friends_calories,]
+```
+
+nice.
+:::
+
+## Data Frame Statistics
+
+Some functions are very handy to summarise information about a data frame; these include but not limited to:
+
+`summary()` summarises basic statistics about each column in your data frame.
+
+```{r}
+summary(movies)
+```
+
+`dim()` shows you how many rows and columns you have; first one is the rows(guess the second one.)
+
+```{r}
+dim(movies)
+```
+
+Well you can have that info and more using `str()`; which, in addition to row and column numbers(observations are the number of rows; guess the variables.)
+
+```{r}
+str(movies)
+```
+
+so prod.Year is a numeric varaible and we see its first 5 values.
+
+Sometimes we have really long data frames. And we only want to see the first 6 rows. Than we use `head()`
+
+```{r}
+head(movies)
+```
+
+What if we want to see the last 6, then use `tail()`
+
+```{r}
+tail(movies)
+```
+
+`View()` is also a very nice function you should try at home, at your own risk.
+
+```{r}
+#| eval: false
+View(movies)
+```
+
+# GGplot2
+
+Definition: hard to make it only one chapter. This is the package what makes R very popular.(the other one is `tidyverse`; you are not ready for it... yet.).
+
+ggplot2 is a library which helps us to visualize data frames, which is super fun.
+
+first load the package.
+
+```{r}
+library(ggplot2)
+```
