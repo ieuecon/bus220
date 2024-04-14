@@ -246,7 +246,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>my_good_days <span class="ot">&lt;-</span> my_calories[my_calories <span class="sc">&gt;=</span> <span class="dv">150</span>] <span class="co"># Selects days with calorie counts of 150 or more</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This is used to create a subset of <code>my_calories</code> where the condition (calories &gt;= 150) is true..</p>
+<p>This is used to create a subset of <code>my_calories</code> where the condition (calories &gt;= 150) is true.</p>
 </section>
 </section>
 <section id="vector-merging" class="level2">
@@ -264,7 +264,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="creation">Creation</h2>
 <ul>
 <li><code>matrix()</code>: Creates a matrix from the provided vector.</li>
-<li><code>ncol</code>, <code>by_row</code>: Specifies the number of columns and whether to fill the matrix by rows.</li>
+<li><code>ncol</code>, <code>byrow</code>: Specifies the number of columns and whether to fill the matrix by rows.</li>
 </ul>
 </section>
 <section id="naming" class="level2">
@@ -272,6 +272,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><code>rownames()</code>, <code>colnames()</code>: Assigns names to the rows and columns of a matrix.</li>
 </ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>calories_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(all_calories, <span class="at">ncol=</span><span class="dv">2</span>, <span class="at">byrow=</span><span class="cn">FALSE</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(calories_matrix) <span class="ot">&lt;-</span> days <span class="co"># Sets the row names of the matrix</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(calories_matrix) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"me"</span>, <span class="st">"my_friend"</span>) <span class="co"># Sets the column names of the matrix</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This code block shows how to convert a vector into a matrix and then assign row and column names for better readability.</p>
 </section>
 </section>
 <section id="factors" class="level1">
@@ -282,6 +288,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>as.factor()</code>: Converts a vector into a factor, useful for categorical data.</li>
 <li><code>levels</code>: Specifies the levels of the factor.</li>
 </ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>categorical_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>, <span class="st">"Female"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>categorical_vector_as_factor <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(categorical_vector, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 </section>
 <section id="data-frames" class="level1">
@@ -290,21 +300,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="creation-1">Creation</h2>
 <ul>
 <li><code>data.frame()</code>: Combines vectors into a data frame, columns must be of equal length.</li>
+<li><code>rownames()</code>: Assigns names to the rows of the data frame.</li>
 </ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>my_data_frame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(my_calories, my_friends_calories)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(my_data_frame) <span class="ot">&lt;-</span> days </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A data frame is created from two vectors and row names are assigned.</p>
 </section>
 <section id="indexing-and-retrieval" class="level2">
 <h2 class="anchored" data-anchor-id="indexing-and-retrieval">Indexing and Retrieval</h2>
 <ul>
 <li><code>my_data_frame[1:3, 1]</code>: Indexes specific rows and columns.</li>
 <li><code>my_data_frame$my_calories</code>: Retrieves a column as a vector.</li>
-<li><code>rownames()</code>: Assigns names to the rows of the data frame.</li>
 </ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>my_data_frame_subset <span class="ot">&lt;-</span> my_data_frame[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">1</span>] <span class="co"># Selects the first three rows of the first column</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>my_column <span class="ot">&lt;-</span> my_data_frame<span class="sc">$</span>my_calories <span class="co"># Retrieves a single column from the data frame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Subsetting a data frame to retrieve specific rows/columns and accessing a single column as a vector.</p>
 </section>
 <section id="conditional-retrieval" class="level2">
 <h2 class="anchored" data-anchor-id="conditional-retrieval">Conditional Retrieval</h2>
 <ul>
 <li><code>murders[murders$region == "South", ]</code>: Retrieves rows based on a condition.</li>
 </ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>southern_states <span class="ot">&lt;-</span> murders[murders<span class="sc">$</span>region <span class="sc">==</span> <span class="st">"South"</span>, ] <span class="co"># Retrieves rows where the region is 'South'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This code demonstrates how to subset a data frame based on a condition.</p>
 </section>
 </section>
 <section id="ggplot-for-data-visualization" class="level1">
@@ -316,14 +340,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>geom_point()</code>: Creates a scatter plot.</li>
 <li><code>geom_bar()</code>: Creates a bar plot.</li>
 </ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(murders) <span class="sc">+</span> <span class="fu">aes</span>(<span class="at">x=</span>population) <span class="sc">+</span> <span class="fu">geom_histogram</span>() <span class="co"># Creates a histogram</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(murders) <span class="sc">+</span> <span class="fu">aes</span>(<span class="at">x=</span>population, <span class="at">y=</span>total) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="co"># Creates a scatter plot</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(murders) <span class="sc">+</span> <span class="fu">aes</span>(<span class="at">x=</span>region) <span class="sc">+</span> <span class="fu">geom_bar</span>() <span class="co"># Creates a bar plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Each line of code creates a different type of plot using the <code>ggplot2</code> package, one of the most powerful visualization packages in R.</p>
 </section>
 <section id="enhancements" class="level2">
 <h2 class="anchored" data-anchor-id="enhancements">Enhancements</h2>
 <ul>
 <li>Labels and Colors: <code>geom_label()</code>, coloring by <code>color=region</code>.</li>
 <li>Scaling: <code>scale_x_continuous()</code>, <code>scale_y_continuous()</code> for logarithmic transformations.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(murders) <span class="sc">+</span> <span class="fu">aes</span>(<span class="at">x=</span>population, <span class="at">y=</span>total, <span class="at">label=</span>abb, <span class="at">color=</span>region) <span class="sc">+</span> <span class="fu">geom_label</span>()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(murders) <span class="sc">+</span> <span class="fu">aes</span>(<span class="at">x=</span>population, <span class="at">y=</span>total) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">trans=</span><span class="st">"log10"</span>) <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">trans=</span><span class="st">"log10"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This code block illustrates how to add labels and colors to the points in a plot, and how to transform axes scales.</p>
+<ul>
 <li>Titles and Labels: <code>xlab()</code>, <code>ggtitle()</code> for custom labels and titles.</li>
 </ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(murders) <span class="sc">+</span> <span class="fu">aes</span>(<span class="at">x=</span>population<span class="sc">/</span><span class="dv">1000000</span>, <span class="at">y=</span>total) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Population in millions"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"Number of murders vs population in US states"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This line demonstrates how to label the axes and add a title to a plot for better understanding of the presented data.</p>
 </section>
 </section>
 <section id="statistical-summaries" class="level1">
@@ -335,6 +377,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>mean()</code>: Calculates the mean of a variable.</li>
 <li><code>tapply()</code>: Applies a function (like <code>summary</code>) over subsets of a vector, indexed by some other vector (like regions).</li>
 </ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(murders<span class="sc">$</span>population) <span class="co"># Provides a full summary statistics for the population column</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(murders<span class="sc">$</span>population) <span class="co"># Calculates the mean of the population column</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(murders<span class="sc">$</span>population, murders<span class="sc">$</span>region, summary) <span class="co"># Applies the summary function to subsets of population based on the region</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>These functions are used to calculate summary statistics for vectors and subsets of data within vectors.</p>
 
 
 </section>

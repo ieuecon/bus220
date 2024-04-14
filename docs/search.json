@@ -4,7 +4,7 @@
     "href": "about.html",
     "title": "Cheat Sheet",
     "section": "",
-    "text": "c(): Combines elements into a vector.\nnames(): Assigns names to vector elements for easier indexing.\n\n\ndays &lt;- c(\"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\")\nmy_calories &lt;- c(100, 120, 200, 150, 140)\nnames(my_calories) &lt;- days # Assigns names to the elements in the 'my_calories' vector\n\nThis code creates two vectors: one for days and one for calorie count. It then assigns the names of the days as labels for the calorie counts.\n\n\n\n\n\n\nBy position: my_calories[1] retrieves the first element.\nBy name: my_calories[\"Monday\"] retrieves the element named “Monday”.\nBy range: my_calories[1:3] retrieves the first three elements.\n\n\nfirst_three_days &lt;- my_calories[1:3] # Selects the first three elements\nmy_calories_monday &lt;- my_calories[\"Monday\"] # Selects the element named \"Monday\"\n\nThis demonstrates how to retrieve specific elements from a vector, either by their position or by their assigned names.\n\n\n\n\nmy_calories[my_calories &gt;= 150] retrieves elements meeting the condition.\n\n\nmy_good_days &lt;- my_calories[my_calories &gt;= 150] # Selects days with calorie counts of 150 or more\n\nThis is used to create a subset of my_calories where the condition (calories &gt;= 150) is true..\n\n\n\n\nThe c() function is used again to merge two separate vectors into a single vector.\n\nmy_friends_calories &lt;- c(200, 130, 100, 170, 150)\nall_calories &lt;- c(my_calories, my_friends_calories): Combines two vectors into one."
+    "text": "c(): Combines elements into a vector.\nnames(): Assigns names to vector elements for easier indexing.\n\n\ndays &lt;- c(\"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\")\nmy_calories &lt;- c(100, 120, 200, 150, 140)\nnames(my_calories) &lt;- days # Assigns names to the elements in the 'my_calories' vector\n\nThis code creates two vectors: one for days and one for calorie count. It then assigns the names of the days as labels for the calorie counts.\n\n\n\n\n\n\nBy position: my_calories[1] retrieves the first element.\nBy name: my_calories[\"Monday\"] retrieves the element named “Monday”.\nBy range: my_calories[1:3] retrieves the first three elements.\n\n\nfirst_three_days &lt;- my_calories[1:3] # Selects the first three elements\nmy_calories_monday &lt;- my_calories[\"Monday\"] # Selects the element named \"Monday\"\n\nThis demonstrates how to retrieve specific elements from a vector, either by their position or by their assigned names.\n\n\n\n\nmy_calories[my_calories &gt;= 150] retrieves elements meeting the condition.\n\n\nmy_good_days &lt;- my_calories[my_calories &gt;= 150] # Selects days with calorie counts of 150 or more\n\nThis is used to create a subset of my_calories where the condition (calories &gt;= 150) is true.\n\n\n\n\nThe c() function is used again to merge two separate vectors into a single vector.\n\nmy_friends_calories &lt;- c(200, 130, 100, 170, 150)\nall_calories &lt;- c(my_calories, my_friends_calories): Combines two vectors into one."
   },
   {
     "objectID": "about.html#creation-and-naming",
@@ -18,7 +18,7 @@
     "href": "about.html#vector-operations",
     "title": "Cheat Sheet",
     "section": "",
-    "text": "By position: my_calories[1] retrieves the first element.\nBy name: my_calories[\"Monday\"] retrieves the element named “Monday”.\nBy range: my_calories[1:3] retrieves the first three elements.\n\n\nfirst_three_days &lt;- my_calories[1:3] # Selects the first three elements\nmy_calories_monday &lt;- my_calories[\"Monday\"] # Selects the element named \"Monday\"\n\nThis demonstrates how to retrieve specific elements from a vector, either by their position or by their assigned names.\n\n\n\n\nmy_calories[my_calories &gt;= 150] retrieves elements meeting the condition.\n\n\nmy_good_days &lt;- my_calories[my_calories &gt;= 150] # Selects days with calorie counts of 150 or more\n\nThis is used to create a subset of my_calories where the condition (calories &gt;= 150) is true.."
+    "text": "By position: my_calories[1] retrieves the first element.\nBy name: my_calories[\"Monday\"] retrieves the element named “Monday”.\nBy range: my_calories[1:3] retrieves the first three elements.\n\n\nfirst_three_days &lt;- my_calories[1:3] # Selects the first three elements\nmy_calories_monday &lt;- my_calories[\"Monday\"] # Selects the element named \"Monday\"\n\nThis demonstrates how to retrieve specific elements from a vector, either by their position or by their assigned names.\n\n\n\n\nmy_calories[my_calories &gt;= 150] retrieves elements meeting the condition.\n\n\nmy_good_days &lt;- my_calories[my_calories &gt;= 150] # Selects days with calorie counts of 150 or more\n\nThis is used to create a subset of my_calories where the condition (calories &gt;= 150) is true."
   },
   {
     "objectID": "about.html#vector-merging",
@@ -32,63 +32,63 @@
     "href": "about.html#creation",
     "title": "Cheat Sheet",
     "section": "Creation",
-    "text": "Creation\n\nmatrix(): Creates a matrix from the provided vector.\nncol, by_row: Specifies the number of columns and whether to fill the matrix by rows."
+    "text": "Creation\n\nmatrix(): Creates a matrix from the provided vector.\nncol, byrow: Specifies the number of columns and whether to fill the matrix by rows."
   },
   {
     "objectID": "about.html#naming",
     "href": "about.html#naming",
     "title": "Cheat Sheet",
     "section": "Naming",
-    "text": "Naming\n\nrownames(), colnames(): Assigns names to the rows and columns of a matrix."
+    "text": "Naming\n\nrownames(), colnames(): Assigns names to the rows and columns of a matrix.\n\n\ncalories_matrix &lt;- matrix(all_calories, ncol=2, byrow=FALSE)\nrownames(calories_matrix) &lt;- days # Sets the row names of the matrix\ncolnames(calories_matrix) &lt;- c(\"me\", \"my_friend\") # Sets the column names of the matrix\n\nThis code block shows how to convert a vector into a matrix and then assign row and column names for better readability."
   },
   {
     "objectID": "about.html#factor-creation",
     "href": "about.html#factor-creation",
     "title": "Cheat Sheet",
     "section": "Factor Creation",
-    "text": "Factor Creation\n\nas.factor(): Converts a vector into a factor, useful for categorical data.\nlevels: Specifies the levels of the factor."
+    "text": "Factor Creation\n\nas.factor(): Converts a vector into a factor, useful for categorical data.\nlevels: Specifies the levels of the factor.\n\n\ncategorical_vector &lt;- c(\"Male\", \"Female\", \"Female\")\ncategorical_vector_as_factor &lt;- as.factor(categorical_vector, levels=c(\"Male\", \"Female\"))"
   },
   {
     "objectID": "about.html#creation-1",
     "href": "about.html#creation-1",
     "title": "Cheat Sheet",
     "section": "Creation",
-    "text": "Creation\n\ndata.frame(): Combines vectors into a data frame, columns must be of equal length."
+    "text": "Creation\n\ndata.frame(): Combines vectors into a data frame, columns must be of equal length.\nrownames(): Assigns names to the rows of the data frame.\n\n\nmy_data_frame &lt;- data.frame(my_calories, my_friends_calories)\nrownames(my_data_frame) &lt;- days \n\nA data frame is created from two vectors and row names are assigned."
   },
   {
     "objectID": "about.html#indexing-and-retrieval",
     "href": "about.html#indexing-and-retrieval",
     "title": "Cheat Sheet",
     "section": "Indexing and Retrieval",
-    "text": "Indexing and Retrieval\n\nmy_data_frame[1:3, 1]: Indexes specific rows and columns.\nmy_data_frame$my_calories: Retrieves a column as a vector.\nrownames(): Assigns names to the rows of the data frame."
+    "text": "Indexing and Retrieval\n\nmy_data_frame[1:3, 1]: Indexes specific rows and columns.\nmy_data_frame$my_calories: Retrieves a column as a vector.\n\n\nmy_data_frame_subset &lt;- my_data_frame[1:3, 1] # Selects the first three rows of the first column\nmy_column &lt;- my_data_frame$my_calories # Retrieves a single column from the data frame\n\nSubsetting a data frame to retrieve specific rows/columns and accessing a single column as a vector."
   },
   {
     "objectID": "about.html#conditional-retrieval",
     "href": "about.html#conditional-retrieval",
     "title": "Cheat Sheet",
     "section": "Conditional Retrieval",
-    "text": "Conditional Retrieval\n\nmurders[murders$region == \"South\", ]: Retrieves rows based on a condition."
+    "text": "Conditional Retrieval\n\nmurders[murders$region == \"South\", ]: Retrieves rows based on a condition.\n\n\nsouthern_states &lt;- murders[murders$region == \"South\", ] # Retrieves rows where the region is 'South'\n\nThis code demonstrates how to subset a data frame based on a condition."
   },
   {
     "objectID": "about.html#plot-types",
     "href": "about.html#plot-types",
     "title": "Cheat Sheet",
     "section": "Plot Types",
-    "text": "Plot Types\n\ngeom_histogram(): Creates a histogram.\ngeom_point(): Creates a scatter plot.\ngeom_bar(): Creates a bar plot."
+    "text": "Plot Types\n\ngeom_histogram(): Creates a histogram.\ngeom_point(): Creates a scatter plot.\ngeom_bar(): Creates a bar plot.\n\n\nggplot(murders) + aes(x=population) + geom_histogram() # Creates a histogram\nggplot(murders) + aes(x=population, y=total) + geom_point() # Creates a scatter plot\nggplot(murders) + aes(x=region) + geom_bar() # Creates a bar plot\n\nEach line of code creates a different type of plot using the ggplot2 package, one of the most powerful visualization packages in R."
   },
   {
     "objectID": "about.html#enhancements",
     "href": "about.html#enhancements",
     "title": "Cheat Sheet",
     "section": "Enhancements",
-    "text": "Enhancements\n\nLabels and Colors: geom_label(), coloring by color=region.\nScaling: scale_x_continuous(), scale_y_continuous() for logarithmic transformations.\nTitles and Labels: xlab(), ggtitle() for custom labels and titles."
+    "text": "Enhancements\n\nLabels and Colors: geom_label(), coloring by color=region.\nScaling: scale_x_continuous(), scale_y_continuous() for logarithmic transformations.\n\n\nggplot(murders) + aes(x=population, y=total, label=abb, color=region) + geom_label()\nggplot(murders) + aes(x=population, y=total) + geom_point() +\n    scale_x_continuous(trans=\"log10\") + scale_y_continuous(trans=\"log10\")\n\nThis code block illustrates how to add labels and colors to the points in a plot, and how to transform axes scales.\n\nTitles and Labels: xlab(), ggtitle() for custom labels and titles.\n\n\nggplot(murders) + aes(x=population/1000000, y=total) + geom_point() + xlab(\"Population in millions\") + ggtitle(\"Number of murders vs population in US states\")\n\nThis line demonstrates how to label the axes and add a title to a plot for better understanding of the presented data."
   },
   {
     "objectID": "about.html#summary-functions",
     "href": "about.html#summary-functions",
     "title": "Cheat Sheet",
     "section": "Summary Functions",
-    "text": "Summary Functions\n\nsummary(): Provides a full summary of a variable.\nmean(): Calculates the mean of a variable.\ntapply(): Applies a function (like summary) over subsets of a vector, indexed by some other vector (like regions)."
+    "text": "Summary Functions\n\nsummary(): Provides a full summary of a variable.\nmean(): Calculates the mean of a variable.\ntapply(): Applies a function (like summary) over subsets of a vector, indexed by some other vector (like regions).\n\n\nsummary(murders$population) # Provides a full summary statistics for the population column\nmean(murders$population) # Calculates the mean of the population column\ntapply(murders$population, murders$region, summary) # Applies the summary function to subsets of population based on the region\n\nThese functions are used to calculate summary statistics for vectors and subsets of data within vectors."
   },
   {
     "objectID": "index.html",
