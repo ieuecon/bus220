@@ -40,7 +40,7 @@ This demonstrates how to retrieve specific elements from a vector, either by the
 my_good_days <- my_calories[my_calories >= 150] # Selects days with calorie counts of 150 or more
 ```
 
-This is used to create a subset of `my_calories` where the condition (calories >= 150) is true.
+This is used to create a subset of `my_calories` where the condition (calories >= 150) is true..
 
 ## Vector Merging
 
