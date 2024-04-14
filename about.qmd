@@ -25,6 +25,13 @@ This code creates two vectors: one for days and one for calorie count. It then a
 -   By name: `my_calories["Monday"]` retrieves the element named "Monday".
 -   By range: `my_calories[1:3]` retrieves the first three elements.
 
+```{r}
+first_three_days <- my_calories[1:3] # Selects the first three elements
+my_calories_monday <- my_calories["Monday"] # Selects the element named "Monday"
+```
+
+This demonstrates how to retrieve specific elements from a vector, either by their position or by their assigned names.
+
 ### Conditional Indexing
 
 -   `my_calories[my_calories >= 150]` retrieves elements meeting the condition.
