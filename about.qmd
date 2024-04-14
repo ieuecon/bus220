@@ -36,9 +36,18 @@ This demonstrates how to retrieve specific elements from a vector, either by the
 
 -   `my_calories[my_calories >= 150]` retrieves elements meeting the condition.
 
+```{r}
+my_good_days <- my_calories[my_calories >= 150] # Selects days with calorie counts of 150 or more
+```
+
+This is used to create a subset of `my_calories` where the condition (calories >= 150) is true.
+
 ## Vector Merging
 
--   `c(my_calories, my_friends_calories)`: Combines two vectors into one.
+The `c()` function is used again to merge two separate vectors into a single vector.
+
+-   `my_friends_calories <- c(200, 130, 100, 170, 150)`
+-   `all_calories <- c(my_calories, my_friends_calories)`: Combines two vectors into one.
 
 # Matrices
 
