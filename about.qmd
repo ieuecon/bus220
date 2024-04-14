@@ -10,7 +10,15 @@ knitr::opts_chunk$set(eval = FALSE)
 
 # R Basics and Vectors
 
-## Creation and Naming
+## Introduction
+
+-   `install.packages("dslabs")`: Installs the dslabs package.
+-   `library(dslabs)`: Loads the dslabs package into the R session.
+-   `data(murders)`: Loads the 'murders' dataset available in the dslabs package.
+
+## Vectors
+
+### Creation and Naming
 
 -   `c()`: Combines elements into a vector.
 -   `names()`: Assigns names to vector elements for easier indexing.
@@ -22,8 +30,6 @@ names(my_calories) <- days # Assigns names to the elements in the 'my_calories' 
 ```
 
 This code creates two vectors: one for days and one for calorie count. It then assigns the names of the days as labels for the calorie counts.
-
-## Vector Operations
 
 ### Indexing
 
@@ -38,6 +44,8 @@ my_calories_monday <- my_calories["Monday"] # Selects the element named "Monday"
 
 This demonstrates how to retrieve specific elements from a vector, either by their position or by their assigned names.
 
+-   `my_exp[c(1,3)]` or `my_exp[c("MON","WED")]`: Accessing multiple elements using numeric or named indices. Retrieves the first and third elements or retrieves the element named "MON" and "WED".
+
 ### Conditional Indexing
 
 -   `my_calories[my_calories >= 150]` retrieves elements meeting the condition.
@@ -48,35 +56,60 @@ my_good_days <- my_calories[my_calories >= 150] # Selects days with calorie coun
 
 This is used to create a subset of `my_calories` where the condition (calories >= 150) is true.
 
-## Vector Merging
+### Vector Merging
 
 The `c()` function is used again to merge two separate vectors into a single vector.
 
 -   `my_friends_calories <- c(200, 130, 100, 170, 150)`
 -   `all_calories <- c(my_calories, my_friends_calories)`: Combines two vectors into one.
 
-# Matrices
+### Some Vector Operations
 
-## Creation
+-   `my_calories <- my_calories + 50`: Adding 50 to each element of my_calories vector.
+-   `weekly_calories <- sum(my_calories)`: Summing all elements of my_calories to get weekly_calories, the total calories.
+
+
+## Matrices
+
+### Creation
 
 -   `matrix()`: Creates a matrix from the provided vector.
 -   `ncol`, `byrow`: Specifies the number of columns and whether to fill the matrix by rows.
 
-## Naming
+### Naming
 
 -   `rownames()`, `colnames()`: Assigns names to the rows and columns of a matrix.
 
 ```{r}
 calories_matrix <- matrix(all_calories, ncol=2, byrow=FALSE)
-rownames(calories_matrix) <- days # Sets the row names of the matrix
-colnames(calories_matrix) <- c("me", "my_friend") # Sets the column names of the matrix
+rownames(calories_matrix) <- days # Sets the row names of the matrix.
+colnames(calories_matrix) <- c("me", "my_friend") # Sets the column names of the matrix.
 ```
 
 This code block shows how to convert a vector into a matrix and then assign row and column names for better readability.
 
-# Factors
+### Matrices Operations 
 
-## Factor Creation
+Let's first create a matrix again.
+
+-   `sw_matrix <- matrix(sw, nrow = 3, byrow = TRUE)`: #Creating a matrix sw_matrix from the sw vector, filling the matrix by rows.
+-   `rownames(sw_matrix) <- titles`: #Setting row names of the matrix sw_matrix.
+-   `colnames(sw_matrix) <- regions`: #Setting column names of the matrix sw_matrix.
+
+Summation;
+
+-   `colSums(sw_matrix)` and `rowSums(sw_matrix)`: #Calculating the sum of columns and rows in sw_matrix.
+-   `sw_matrix2 <- cbind(sw_matrix, worldwide)`: #Binding a new column worldwide to the sw_matrix to form sw_matrix2.
+
+Combining;
+
+-   `sw2 <- matrix(box_office2, nrow = 3, byrow=TRUE)`: #Creating another matrix sw2.
+-   `allsw <- rbind(sw_matrix, sw2)`: #Combining two matrices by rows, resulting in allsw.
+
+
+## Factors
+
+### Factor Creation
 
 -   `as.factor()`: Converts a vector into a factor, useful for categorical data.
 -   `levels`: Specifies the levels of the factor.
@@ -86,9 +119,9 @@ categorical_vector <- c("Male", "Female", "Female")
 categorical_vector_as_factor <- as.factor(categorical_vector, levels=c("Male", "Female"))
 ```
 
-# Data Frames
+## Data Frames
 
-## Creation
+### Creation
 
 -   `data.frame()`: Combines vectors into a data frame, columns must be of equal length.
 -   `rownames()`: Assigns names to the rows of the data frame.
@@ -100,7 +133,7 @@ rownames(my_data_frame) <- days
 
 A data frame is created from two vectors and row names are assigned.
 
-## Indexing and Retrieval
+### Indexing and Retrieval
 
 -   `my_data_frame[1:3, 1]`: Indexes specific rows and columns.
 -   `my_data_frame$my_calories`: Retrieves a column as a vector.
@@ -112,7 +145,7 @@ my_column <- my_data_frame$my_calories # Retrieves a single column from the data
 
 Subsetting a data frame to retrieve specific rows/columns and accessing a single column as a vector.
 
-## Conditional Retrieval
+### Conditional Retrieval
 
 -   `murders[murders$region == "South", ]`: Retrieves rows based on a condition.
 
@@ -122,9 +155,9 @@ southern_states <- murders[murders$region == "South", ] # Retrieves rows where t
 
 This code demonstrates how to subset a data frame based on a condition.
 
-# ggplot for Data Visualization
+## ggplot for Data Visualization
 
-## Plot Types
+### Plot Types
 
 -   `geom_histogram()`: Creates a histogram.
 -   `geom_point()`: Creates a scatter plot.
@@ -139,7 +172,7 @@ ggplot(murders) + aes(x=region) + geom_bar() # Creates a bar plot
 
 Each line of code creates a different type of plot using the `ggplot2` package, one of the most powerful visualization packages in R.
 
-## Enhancements
+### Enhancements
 
 -   Labels and Colors: `geom_label()`, coloring by `color=region`.
 -   Scaling: `scale_x_continuous()`, `scale_y_continuous()` for logarithmic transformations.
@@ -160,9 +193,9 @@ ggplot(murders) + aes(x=population/1000000, y=total) + geom_point() + xlab("Popu
 
 This line demonstrates how to label the axes and add a title to a plot for better understanding of the presented data.
 
-# Statistical Summaries
+## Statistical Summaries
 
-## Summary Functions
+### Summary Functions
 
 -   `summary()`: Provides a full summary of a variable.
 -   `mean()`: Calculates the mean of a variable.

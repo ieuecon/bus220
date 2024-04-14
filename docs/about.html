@@ -151,18 +151,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#r-basics-and-vectors" id="toc-r-basics-and-vectors" class="nav-link active" data-scroll-target="#r-basics-and-vectors">R Basics and Vectors</a>
   <ul class="collapse">
-  <li><a href="#creation-and-naming" id="toc-creation-and-naming" class="nav-link" data-scroll-target="#creation-and-naming">Creation and Naming</a></li>
-  <li><a href="#vector-operations" id="toc-vector-operations" class="nav-link" data-scroll-target="#vector-operations">Vector Operations</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#vectors" id="toc-vectors" class="nav-link" data-scroll-target="#vectors">Vectors</a>
   <ul class="collapse">
+  <li><a href="#creation-and-naming" id="toc-creation-and-naming" class="nav-link" data-scroll-target="#creation-and-naming">Creation and Naming</a></li>
   <li><a href="#indexing" id="toc-indexing" class="nav-link" data-scroll-target="#indexing">Indexing</a></li>
   <li><a href="#conditional-indexing" id="toc-conditional-indexing" class="nav-link" data-scroll-target="#conditional-indexing">Conditional Indexing</a></li>
-  </ul></li>
   <li><a href="#vector-merging" id="toc-vector-merging" class="nav-link" data-scroll-target="#vector-merging">Vector Merging</a></li>
+  <li><a href="#some-vector-operations" id="toc-some-vector-operations" class="nav-link" data-scroll-target="#some-vector-operations">Some Vector Operations</a></li>
   </ul></li>
   <li><a href="#matrices" id="toc-matrices" class="nav-link" data-scroll-target="#matrices">Matrices</a>
   <ul class="collapse">
   <li><a href="#creation" id="toc-creation" class="nav-link" data-scroll-target="#creation">Creation</a></li>
   <li><a href="#naming" id="toc-naming" class="nav-link" data-scroll-target="#naming">Naming</a></li>
+  <li><a href="#matrices-operations" id="toc-matrices-operations" class="nav-link" data-scroll-target="#matrices-operations">Matrices Operations</a></li>
   </ul></li>
   <li><a href="#factors" id="toc-factors" class="nav-link" data-scroll-target="#factors">Factors</a>
   <ul class="collapse">
@@ -182,6 +184,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#statistical-summaries" id="toc-statistical-summaries" class="nav-link" data-scroll-target="#statistical-summaries">Statistical Summaries</a>
   <ul class="collapse">
   <li><a href="#summary-functions" id="toc-summary-functions" class="nav-link" data-scroll-target="#summary-functions">Summary Functions</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -210,8 +213,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="r-basics-and-vectors" class="level1">
 <h1>R Basics and Vectors</h1>
-<section id="creation-and-naming" class="level2">
-<h2 class="anchored" data-anchor-id="creation-and-naming">Creation and Naming</h2>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<ul>
+<li><code>install.packages("dslabs")</code>: Installs the dslabs package.</li>
+<li><code>library(dslabs)</code>: Loads the dslabs package into the R session.</li>
+<li><code>data(murders)</code>: Loads the ‘murders’ dataset available in the dslabs package.</li>
+</ul>
+</section>
+<section id="vectors" class="level2">
+<h2 class="anchored" data-anchor-id="vectors">Vectors</h2>
+<section id="creation-and-naming" class="level3">
+<h3 class="anchored" data-anchor-id="creation-and-naming">Creation and Naming</h3>
 <ul>
 <li><code>c()</code>: Combines elements into a vector.</li>
 <li><code>names()</code>: Assigns names to vector elements for easier indexing.</li>
@@ -223,8 +236,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>This code creates two vectors: one for days and one for calorie count. It then assigns the names of the days as labels for the calorie counts.</p>
 </section>
-<section id="vector-operations" class="level2">
-<h2 class="anchored" data-anchor-id="vector-operations">Vector Operations</h2>
 <section id="indexing" class="level3">
 <h3 class="anchored" data-anchor-id="indexing">Indexing</h3>
 <ul>
@@ -237,6 +248,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>my_calories_monday <span class="ot">&lt;-</span> my_calories[<span class="st">"Monday"</span>] <span class="co"># Selects the element named "Monday"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This demonstrates how to retrieve specific elements from a vector, either by their position or by their assigned names.</p>
+<ul>
+<li><code>my_exp[c(1,3)]</code> or <code>my_exp[c("MON","WED")]</code>: Accessing multiple elements using numeric or named indices. Retrieves the first and third elements or retrieves the element named “MON” and “WED”.</li>
+</ul>
 </section>
 <section id="conditional-indexing" class="level3">
 <h3 class="anchored" data-anchor-id="conditional-indexing">Conditional Indexing</h3>
@@ -248,42 +262,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>This is used to create a subset of <code>my_calories</code> where the condition (calories &gt;= 150) is true.</p>
 </section>
-</section>
-<section id="vector-merging" class="level2">
-<h2 class="anchored" data-anchor-id="vector-merging">Vector Merging</h2>
+<section id="vector-merging" class="level3">
+<h3 class="anchored" data-anchor-id="vector-merging">Vector Merging</h3>
 <p>The <code>c()</code> function is used again to merge two separate vectors into a single vector.</p>
 <ul>
 <li><code>my_friends_calories &lt;- c(200, 130, 100, 170, 150)</code></li>
 <li><code>all_calories &lt;- c(my_calories, my_friends_calories)</code>: Combines two vectors into one.</li>
 </ul>
 </section>
+<section id="some-vector-operations" class="level3">
+<h3 class="anchored" data-anchor-id="some-vector-operations">Some Vector Operations</h3>
+<ul>
+<li><code>my_calories &lt;- my_calories + 50</code>: Adding 50 to each element of my_calories vector.</li>
+<li><code>weekly_calories &lt;- sum(my_calories)</code>: Summing all elements of my_calories to get weekly_calories, the total calories.</li>
+</ul>
 </section>
-<section id="matrices" class="level1">
-<h1>Matrices</h1>
-<section id="creation" class="level2">
-<h2 class="anchored" data-anchor-id="creation">Creation</h2>
+</section>
+<section id="matrices" class="level2">
+<h2 class="anchored" data-anchor-id="matrices">Matrices</h2>
+<section id="creation" class="level3">
+<h3 class="anchored" data-anchor-id="creation">Creation</h3>
 <ul>
 <li><code>matrix()</code>: Creates a matrix from the provided vector.</li>
 <li><code>ncol</code>, <code>byrow</code>: Specifies the number of columns and whether to fill the matrix by rows.</li>
 </ul>
 </section>
-<section id="naming" class="level2">
-<h2 class="anchored" data-anchor-id="naming">Naming</h2>
+<section id="naming" class="level3">
+<h3 class="anchored" data-anchor-id="naming">Naming</h3>
 <ul>
 <li><code>rownames()</code>, <code>colnames()</code>: Assigns names to the rows and columns of a matrix.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>calories_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(all_calories, <span class="at">ncol=</span><span class="dv">2</span>, <span class="at">byrow=</span><span class="cn">FALSE</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(calories_matrix) <span class="ot">&lt;-</span> days <span class="co"># Sets the row names of the matrix</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(calories_matrix) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"me"</span>, <span class="st">"my_friend"</span>) <span class="co"># Sets the column names of the matrix</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(calories_matrix) <span class="ot">&lt;-</span> days <span class="co"># Sets the row names of the matrix.</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(calories_matrix) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"me"</span>, <span class="st">"my_friend"</span>) <span class="co"># Sets the column names of the matrix.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This code block shows how to convert a vector into a matrix and then assign row and column names for better readability.</p>
 </section>
+<section id="matrices-operations" class="level3">
+<h3 class="anchored" data-anchor-id="matrices-operations">Matrices Operations</h3>
+<p>Let’s first create a matrix again.</p>
+<ul>
+<li><code>sw_matrix &lt;- matrix(sw, nrow = 3, byrow = TRUE)</code>: #Creating a matrix sw_matrix from the sw vector, filling the matrix by rows.</li>
+<li><code>rownames(sw_matrix) &lt;- titles</code>: #Setting row names of the matrix sw_matrix.</li>
+<li><code>colnames(sw_matrix) &lt;- regions</code>: #Setting column names of the matrix sw_matrix.</li>
+</ul>
+<p>Summation;</p>
+<ul>
+<li><code>colSums(sw_matrix)</code> and <code>rowSums(sw_matrix)</code>: #Calculating the sum of columns and rows in sw_matrix.</li>
+<li><code>sw_matrix2 &lt;- cbind(sw_matrix, worldwide)</code>: #Binding a new column worldwide to the sw_matrix to form sw_matrix2.</li>
+</ul>
+<p>Combining;</p>
+<ul>
+<li><code>sw2 &lt;- matrix(box_office2, nrow = 3, byrow=TRUE)</code>: #Creating another matrix sw2.</li>
+<li><code>allsw &lt;- rbind(sw_matrix, sw2)</code>: #Combining two matrices by rows, resulting in allsw.</li>
+</ul>
 </section>
-<section id="factors" class="level1">
-<h1>Factors</h1>
-<section id="factor-creation" class="level2">
-<h2 class="anchored" data-anchor-id="factor-creation">Factor Creation</h2>
+</section>
+<section id="factors" class="level2">
+<h2 class="anchored" data-anchor-id="factors">Factors</h2>
+<section id="factor-creation" class="level3">
+<h3 class="anchored" data-anchor-id="factor-creation">Factor Creation</h3>
 <ul>
 <li><code>as.factor()</code>: Converts a vector into a factor, useful for categorical data.</li>
 <li><code>levels</code>: Specifies the levels of the factor.</li>
@@ -294,10 +333,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="data-frames" class="level1">
-<h1>Data Frames</h1>
-<section id="creation-1" class="level2">
-<h2 class="anchored" data-anchor-id="creation-1">Creation</h2>
+<section id="data-frames" class="level2">
+<h2 class="anchored" data-anchor-id="data-frames">Data Frames</h2>
+<section id="creation-1" class="level3">
+<h3 class="anchored" data-anchor-id="creation-1">Creation</h3>
 <ul>
 <li><code>data.frame()</code>: Combines vectors into a data frame, columns must be of equal length.</li>
 <li><code>rownames()</code>: Assigns names to the rows of the data frame.</li>
@@ -308,8 +347,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>A data frame is created from two vectors and row names are assigned.</p>
 </section>
-<section id="indexing-and-retrieval" class="level2">
-<h2 class="anchored" data-anchor-id="indexing-and-retrieval">Indexing and Retrieval</h2>
+<section id="indexing-and-retrieval" class="level3">
+<h3 class="anchored" data-anchor-id="indexing-and-retrieval">Indexing and Retrieval</h3>
 <ul>
 <li><code>my_data_frame[1:3, 1]</code>: Indexes specific rows and columns.</li>
 <li><code>my_data_frame$my_calories</code>: Retrieves a column as a vector.</li>
@@ -320,8 +359,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Subsetting a data frame to retrieve specific rows/columns and accessing a single column as a vector.</p>
 </section>
-<section id="conditional-retrieval" class="level2">
-<h2 class="anchored" data-anchor-id="conditional-retrieval">Conditional Retrieval</h2>
+<section id="conditional-retrieval" class="level3">
+<h3 class="anchored" data-anchor-id="conditional-retrieval">Conditional Retrieval</h3>
 <ul>
 <li><code>murders[murders$region == "South", ]</code>: Retrieves rows based on a condition.</li>
 </ul>
@@ -331,10 +370,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This code demonstrates how to subset a data frame based on a condition.</p>
 </section>
 </section>
-<section id="ggplot-for-data-visualization" class="level1">
-<h1>ggplot for Data Visualization</h1>
-<section id="plot-types" class="level2">
-<h2 class="anchored" data-anchor-id="plot-types">Plot Types</h2>
+<section id="ggplot-for-data-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="ggplot-for-data-visualization">ggplot for Data Visualization</h2>
+<section id="plot-types" class="level3">
+<h3 class="anchored" data-anchor-id="plot-types">Plot Types</h3>
 <ul>
 <li><code>geom_histogram()</code>: Creates a histogram.</li>
 <li><code>geom_point()</code>: Creates a scatter plot.</li>
@@ -347,8 +386,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Each line of code creates a different type of plot using the <code>ggplot2</code> package, one of the most powerful visualization packages in R.</p>
 </section>
-<section id="enhancements" class="level2">
-<h2 class="anchored" data-anchor-id="enhancements">Enhancements</h2>
+<section id="enhancements" class="level3">
+<h3 class="anchored" data-anchor-id="enhancements">Enhancements</h3>
 <ul>
 <li>Labels and Colors: <code>geom_label()</code>, coloring by <code>color=region</code>.</li>
 <li>Scaling: <code>scale_x_continuous()</code>, <code>scale_y_continuous()</code> for logarithmic transformations.</li>
@@ -368,10 +407,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This line demonstrates how to label the axes and add a title to a plot for better understanding of the presented data.</p>
 </section>
 </section>
-<section id="statistical-summaries" class="level1">
-<h1>Statistical Summaries</h1>
-<section id="summary-functions" class="level2">
-<h2 class="anchored" data-anchor-id="summary-functions">Summary Functions</h2>
+<section id="statistical-summaries" class="level2">
+<h2 class="anchored" data-anchor-id="statistical-summaries">Statistical Summaries</h2>
+<section id="summary-functions" class="level3">
+<h3 class="anchored" data-anchor-id="summary-functions">Summary Functions</h3>
 <ul>
 <li><code>summary()</code>: Provides a full summary of a variable.</li>
 <li><code>mean()</code>: Calculates the mean of a variable.</li>
@@ -385,6 +424,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>These functions are used to calculate summary statistics for vectors and subsets of data within vectors.</p>
 
 
+</section>
 </section>
 </section>
 
