@@ -4,28 +4,28 @@
     "href": "about.html",
     "title": "Cheat Sheet",
     "section": "",
-    "text": "c(): Combines ele ments into a vector.\nnames(): Assigns names to vector elements for easier indexing.\n\n\n\n\n\n\n\nBy position: my_calories[1] retrieves the first element.\nBy name: my_calories[\"Monday\"] retrieves the element named “Monday”.\nBy range: my_calories[1:3] retrieves the first three elements.\n\n\n\n\n\nmy_calories[my_calories &gt;= 150] retrieves elements meeting the condition.\n\n\n\n\n\n\nc(my_calories, my_friends_calories): Combines two vectors into one."
+    "text": "c(): Combines elements into a vector.\nnames(): Assigns names to vector elements for easier indexing.\n\n\ndays &lt;- c(\"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\")\nmy_calories &lt;- c(100, 120, 200, 150, 140)\nnames(my_calories) &lt;- days # Assigns names to the elements in the 'my_calories' vector\n\nThis code creates two vectors: one for days and one for calorie count. It then assigns the names of the days as labels for the calorie counts.\n\n\n\n\n\n\nBy position: my_calories[1] retrieves the first element.\nBy name: my_calories[\"Monday\"] retrieves the element named “Monday”.\nBy range: my_calories[1:3] retrieves the first three elements.\n\n\nfirst_three_days &lt;- my_calories[1:3] # Selects the first three elements\nmy_calories_monday &lt;- my_calories[\"Monday\"] # Selects the element named \"Monday\"\n\nThis demonstrates how to retrieve specific elements from a vector, either by their position or by their assigned names.\n\n\n\n\nmy_calories[my_calories &gt;= 150] retrieves elements meeting the condition.\n\n\nmy_good_days &lt;- my_calories[my_calories &gt;= 150] # Selects days with calorie counts of 150 or more\n\nThis is used to create a subset of my_calories where the condition (calories &gt;= 150) is true..\n\n\n\n\nThe c() function is used again to merge two separate vectors into a single vector.\n\nmy_friends_calories &lt;- c(200, 130, 100, 170, 150)\nall_calories &lt;- c(my_calories, my_friends_calories): Combines two vectors into one."
   },
   {
     "objectID": "about.html#creation-and-naming",
     "href": "about.html#creation-and-naming",
     "title": "Cheat Sheet",
     "section": "",
-    "text": "c(): Combines ele ments into a vector.\nnames(): Assigns names to vector elements for easier indexing."
+    "text": "c(): Combines elements into a vector.\nnames(): Assigns names to vector elements for easier indexing.\n\n\ndays &lt;- c(\"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\")\nmy_calories &lt;- c(100, 120, 200, 150, 140)\nnames(my_calories) &lt;- days # Assigns names to the elements in the 'my_calories' vector\n\nThis code creates two vectors: one for days and one for calorie count. It then assigns the names of the days as labels for the calorie counts."
   },
   {
     "objectID": "about.html#vector-operations",
     "href": "about.html#vector-operations",
     "title": "Cheat Sheet",
     "section": "",
-    "text": "By position: my_calories[1] retrieves the first element.\nBy name: my_calories[\"Monday\"] retrieves the element named “Monday”.\nBy range: my_calories[1:3] retrieves the first three elements.\n\n\n\n\n\nmy_calories[my_calories &gt;= 150] retrieves elements meeting the condition."
+    "text": "By position: my_calories[1] retrieves the first element.\nBy name: my_calories[\"Monday\"] retrieves the element named “Monday”.\nBy range: my_calories[1:3] retrieves the first three elements.\n\n\nfirst_three_days &lt;- my_calories[1:3] # Selects the first three elements\nmy_calories_monday &lt;- my_calories[\"Monday\"] # Selects the element named \"Monday\"\n\nThis demonstrates how to retrieve specific elements from a vector, either by their position or by their assigned names.\n\n\n\n\nmy_calories[my_calories &gt;= 150] retrieves elements meeting the condition.\n\n\nmy_good_days &lt;- my_calories[my_calories &gt;= 150] # Selects days with calorie counts of 150 or more\n\nThis is used to create a subset of my_calories where the condition (calories &gt;= 150) is true.."
   },
   {
     "objectID": "about.html#vector-merging",
     "href": "about.html#vector-merging",
     "title": "Cheat Sheet",
     "section": "",
-    "text": "c(my_calories, my_friends_calories): Combines two vectors into one."
+    "text": "The c() function is used again to merge two separate vectors into a single vector.\n\nmy_friends_calories &lt;- c(200, 130, 100, 170, 150)\nall_calories &lt;- c(my_calories, my_friends_calories): Combines two vectors into one."
   },
   {
     "objectID": "about.html#creation",
