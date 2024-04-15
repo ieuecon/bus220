@@ -99,19 +99,19 @@ This code block shows how to convert a vector into a matrix and then assign row 
 
 Let's first create a matrix again.
 
--   `sw_matrix <- matrix(sw, nrow = 3, byrow = TRUE)`: #Creating a matrix `sw_matrix` from the `sw` vector, filling the matrix by rows.
--   `rownames(sw_matrix) <- titles`: #Setting row names of the matrix `sw_matrix`.
--   `colnames(sw_matrix) <- regions`: #Setting column names of the matrix `sw_matrix`.
+-   `sw_matrix <- matrix(sw, nrow = 3, byrow = TRUE)`: Creating a matrix `sw_matrix` from the `sw` vector, filling the matrix by rows.
+-   `rownames(sw_matrix) <- titles`: Setting row names of the matrix `sw_matrix`.
+-   `colnames(sw_matrix) <- regions`: Setting column names of the matrix `sw_matrix`.
 
 Summation;
 
--   `colSums(sw_matrix)` and `rowSums(sw_matrix)`: #Calculating the sum of columns and rows in `sw_matrix`.
--   `sw_matrix2 <- cbind(sw_matrix, worldwide)`: #Binding a new column worldwide to the `sw_matrix` to form `sw_matrix2`.
+-   `colSums(sw_matrix)` and `rowSums(sw_matrix)`: Calculating the sum of columns and rows in `sw_matrix`.
+-   `sw_matrix2 <- cbind(sw_matrix, worldwide)`: Binding a new column worldwide to the `sw_matrix` to form `sw_matrix2`.
 
 Combining;
 
--   `sw2 <- matrix(box_office2, nrow = 3, byrow=TRUE)`: #Creating another matrix `sw2`.
--   `allsw <- rbind(sw_matrix, sw2)`: #Combining two matrices by rows, resulting in `allsw`.
+-   `sw2 <- matrix(box_office2, nrow = 3, byrow=TRUE)`: Creating another matrix `sw2`.
+-   `allsw <- rbind(sw_matrix, sw2)`: Combining two matrices by rows, resulting in `allsw`.
 
 
 ## Factors
@@ -128,7 +128,7 @@ categorical_vector_as_factor <- as.factor(categorical_vector, levels=c("Male", "
 
 ### Checking and converting types:
 
--   `class(a)` where a <- FALSE: Checking the class of a logical FALSE value.
+-   `class(a)` where `a <- FALSE`: Checking the class of a logical FALSE value.
 -   `is.numeric(x)` and `is.character(x)`: Checking if a variable is numeric or character.
 -   `as.numeric(c)*x` where `c <- "2"` and `x <- 2`: Converting a character to numeric and then multiplying by another numeric value.
   
